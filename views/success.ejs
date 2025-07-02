@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Submission Successful</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts and Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1><i class="fa-solid fa-circle-check" style="color: #4caf50;"></i> Form Submitted Successfully!</h1>
+    <p style="margin-bottom: 25px;">Here is the information you submitted:</p>
+
+    <div class="submission-card">
+      <ul style="list-style: none; padding: 0;">
+        <li><strong><i class="fa-solid fa-user"></i> Name:</strong> <%= entry.name %></li>
+        <li><strong><i class="fa-solid fa-envelope"></i> Email:</strong> <%= entry.email %></li>
+        <li><strong><i class="fa-solid fa-hourglass-half"></i> Age:</strong> <%= entry.age || 'Not provided' %></li>
+        <li><strong><i class="fa-solid fa-venus-mars"></i> Gender:</strong> <%= entry.gender %></li>
+        <li><strong><i class="fa-solid fa-earth-asia"></i> Country:</strong> <%= entry.country %></li>
+        <li><strong><i class="fa-solid fa-heart"></i> Hobbies:</strong> <%= entry.hobbies.length > 0 ? entry.hobbies.join(', ') : 'None' %></li>
+        <li><strong><i class="fa-solid fa-comment-dots"></i> Feedback:</strong> <%= entry.feedback || 'No feedback' %></li>
+        <li><strong><i class="fa-solid fa-clock"></i> Submitted At:</strong> <%= entry.timestamp %></li>
+      </ul>
+    </div>
+
+    <div class="popup-buttons" style="margin-top: 25px;">
+      <a href="/" class="btn"><i class="fa-solid fa-arrow-left"></i> Back to Form</a>
+      <a href="/submissions" class="btn"><i class="fa-solid fa-folder-open"></i> View All Submissions</a>
+    </div>
+  </div>
+</body>
+</html>

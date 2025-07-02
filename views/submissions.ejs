@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>All Submissions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font and FontAwesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>📄 All Submitted Entries</h1>
+
+    <% if (submissions.length === 0) { %>
+      <p>No submissions yet.</p>
+    <% } else { %>
+      <% submissions.forEach((entry, index) => { %>
+        <div class="submission-card">
+          <h3><%= index + 1 %>. <%= entry.name %> (<%= entry.email %>)</h3>
+          <p><strong><i class="fa-solid fa-hourglass-half"></i> Age:</strong> <%= entry.age || 'Not provided' %></p>
+          <p><strong><i class="fa-solid fa-venus-mars"></i> Gender:</strong> <%= entry.gender %></p>
+          <p><strong><i class="fa-solid fa-earth-asia"></i> Country:</strong> <%= entry.country %></p>
+          <p><strong><i class="fa-solid fa-heart"></i> Hobbies:</strong> <%= entry.hobbies.length ? entry.hobbies.join(', ') : 'None' %></p>
+          <p><strong><i class="fa-solid fa-comment-dots"></i> Feedback:</strong> <%= entry.feedback || 'No feedback' %></p>
+          <p><small><strong><i class="fa-solid fa-clock"></i> Submitted at:</strong> <%= entry.timestamp %></small></p>
+
+          <!-- 🗑️ Individual delete button -->
+          <form action="/delete/<%= index %>" method="POST" onsubmit="return confirm('Delete this entry?')">
+            <button type="submit" class="btn" style="background-color: #e74c3c;">
+              <i class="fa-solid fa-trash"></i> Delete This
+            </button>
+          </form>
+        </div>
+      <% }); %>
+
+      <!-- 🗑️ Delete All Submissions -->
+      <form action="/delete-all" method="POST" onsubmit="return confirm('Are you sure you want to delete ALL submissions?')">
+        <button type="submit" class="btn" style="background-color: #b02a37; margin-top: 20px;">
+          <i class="fa-solid fa-trash-can"></i> Delete All Submissions
+        </button>
+      </form>
+    <% } %>
+
+    <!-- 🔙 Back Button -->
+    <div class="popup-buttons" style="margin-top: 30px;">
+      <a href="/" class="btn"><i class="fa-solid fa-arrow-left"></i> Back to Form</a>
+    </div>
+  </div>
+</body>
+</html>

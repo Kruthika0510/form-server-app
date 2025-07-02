@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Registration Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="/style.css">
+
+  <!-- Dark Mode Toggle Script -->
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
+    }
+
+    window.onload = () => {
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+    };
+  </script>
+
+  <style>
+    .toggle-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background-color: #222;
+      color: #fff;
+      padding: 8px 12px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .dark-mode .toggle-btn {
+      background-color: #eee;
+      color: #111;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 🌙 Dark Mode Toggle Button -->
+  <button class="toggle-btn" onclick="toggleDarkMode()">
+    <i class="fa-solid fa-moon"></i> Dark Mode
+  </button>
+
+  <div class="container">
+    <h1><i class="fa-solid fa-user"></i> User Registration Form</h1>
+
+    <form id="userForm" action="/submit" method="POST">
+      <fieldset>
+        <label for="name"><i class="fa-solid fa-user"></i> Name *</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email"><i class="fa-solid fa-envelope"></i> Email *</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="age"><i class="fa-solid fa-hourglass-half"></i> Age</label>
+        <input type="number" id="age" name="age">
+      </fieldset>
+
+      <fieldset>
+        <legend><i class="fa-solid fa-venus-mars"></i> Gender *</legend>
+        <div class="radio-group">
+          <label><input type="radio" name="gender" value="Male" required> Male</label>
+          <label><input type="radio" name="gender" value="Female"> Female</label>
+          <label><input type="radio" name="gender" value="Other"> Other</label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <label for="country"><i class="fa-solid fa-earth-asia"></i> Country *</label>
+        <select id="country" name="country" required>
+          <option value="">--Select--</option>
+          <option>India</option>
+          <option>USA</option>
+          <option>UK</option>
+        </select>
+      </fieldset>
+
+      <fieldset>
+        <legend><i class="fa-solid fa-heart"></i> Hobbies</legend>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="hobbies" value="Reading"> Reading</label>
+          <label><input type="checkbox" name="hobbies" value="Traveling"> Traveling</label>
+          <label><input type="checkbox" name="hobbies" value="Music"> Music</label>
+        </div>
+      </fieldset>
+
+      <label for="feedback"><i class="fa-solid fa-comment-dots"></i> Feedback</label>
+      <textarea id="feedback" name="feedback" rows="4" placeholder="Write your feedback..."></textarea>
+
+      <button type="submit"><i class="fa-solid fa-paper-plane"></i> Submit</button>
+    </form>
+  </div>
+
+  <!-- Success Popup -->
+  <div id="popup" class="popup">
+    <p>✅ Form submitted successfully!</p>
+    <div class="popup-buttons">
+      <a href="/" class="btn">🔁 Back to Form</a>
+      <a href="/submissions" class="btn">📄 View Submissions</a>
+    </div>
+  </div>
+
+  <!-- JS for showing popup -->
+  <script>
+    if (window.location.search.includes("success=true")) {
+      const popup = document.getElementById("popup");
+      popup.style.display = "block";
+      popup.scrollIntoView({ behavior: 'smooth' });
+
+      setTimeout(() => {
+        popup.style.display = "none";
+        history.replaceState({}, document.title, "/");
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
