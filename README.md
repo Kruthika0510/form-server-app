@@ -24,7 +24,7 @@ This is a simple web application built using **Node.js**, **Express**, and **EJS
 ### How to Run:
 1. Clone the repository:
     ```bash
-    git clone <your-repository-link>
+    git clone <k>
     ```
 2. Navigate to the project folder:
     ```bash
